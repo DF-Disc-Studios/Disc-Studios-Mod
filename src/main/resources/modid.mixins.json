@@ -1,12 +1,12 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.fabricmc.example.mixin",
+  "package": "net.techstreet.cbp_mod.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
   "client": [
-    "ExampleMixin"
+    "screen.TitleScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
