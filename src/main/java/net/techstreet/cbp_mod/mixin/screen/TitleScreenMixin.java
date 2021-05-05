@@ -34,6 +34,7 @@ public abstract class TitleScreenMixin extends Screen {
     private static Identifier MINECRAFT_TITLE_TEXTURE = new Identifier("textures/gui/title/minecraft.png");
 
     private final Identifier identifier_main = new Identifier(Main.MOD_ID + ":df.png");
+
     protected TitleScreenMixin(Text title) {
         super(title);
     }
@@ -82,12 +83,15 @@ public abstract class TitleScreenMixin extends Screen {
             System.exit(1);
         }));
 
+        /*
         this.addButton(new BlendableTexturedButtonWidget(10, 10, 20, 20, 0, 0, 20, identifier_main, 20, 40,
                 (button) -> {
                     MinecraftClient mc = MinecraftClient.getInstance();
                     ServerInfo serverInfo = new ServerInfo("DF", "mcdiamondfire.com:25565", false);
                     mc.openScreen(new ConnectScreen(mc.currentScreen, mc, serverInfo));
                 }));
+
+         */
     }
 }
 
