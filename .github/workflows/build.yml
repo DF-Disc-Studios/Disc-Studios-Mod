@@ -15,5 +15,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: CBP_Mod
-        path: ./build/libs/CBPMod-1.0.0.jar
+        name: DiscStudios_Client
+        path: ./build/libs/DiscStudios_Client-1.0.0.jar
