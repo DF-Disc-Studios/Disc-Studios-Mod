@@ -11,14 +11,14 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	maven {
+		url "https://maven.shedaniel.me/"
+	}
 }
 
 dependencies {
+	// ModMenu
+
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
@@ -27,8 +27,13 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
-	// You may need to force-disable transitiveness on them.
+	// Config
+	modImplementation "me.shedaniel.cloth:cloth-config-fabric:4.11.19"
+	include "io.github.cottonmc:cotton-client-commands:1.0.1+1.16-rc1"
+	include "me.shedaniel.cloth:cloth-config-fabric:4.11.19"
+
+	//GUI
+	include "io.github.cottonmc:LibGui:3.2.2+1.16.3"
 }
 
 processResources {

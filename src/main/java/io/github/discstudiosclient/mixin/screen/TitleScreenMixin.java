@@ -1,4 +1,4 @@
-package net.techstreet.cbp_mod.mixin.screen;
+package io.github.discstudiosclient.mixin.screen;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.RotatingCubeMapRenderer;
@@ -13,8 +13,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.techstreet.cbp_mod.Main;
-import net.techstreet.cbp_mod.mixin.render.BlendableTexturedButtonWidget;
+import io.github.discstudiosclient.Main;
+import io.github.discstudiosclient.util.BlendableTexturedButtonWidget;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(TitleScreen.class)
-public abstract class TitleScreenMixin extends Screen {
+public class TitleScreenMixin extends Screen {
     @Shadow
     private String splashText;
     @Shadow
@@ -33,7 +33,9 @@ public abstract class TitleScreenMixin extends Screen {
     @Shadow
     private static Identifier MINECRAFT_TITLE_TEXTURE = new Identifier("textures/gui/title/minecraft.png");
 
-    private final Identifier identifier_main = new Identifier(Main.MOD_ID + ":df.png");
+    private final Identifier df_button = new Identifier(Main.MOD_ID + ":df.png");
+
+    //private final Identifier empty_image = new Identifier(Main.MOD_ID + ":empty.png");
 
     protected TitleScreenMixin(Text title) {
         super(title);
@@ -53,8 +55,8 @@ public abstract class TitleScreenMixin extends Screen {
     @Inject(at = @At("TAIL"), method = "init()V")
     protected void initButtons(CallbackInfo info) {
         /*
-        MINECRAFT_TITLE_TEXTURE = new Identifier("Minecraft", "assets/empty.png");
-        EDITION_TITLE_TEXTURE = new Identifier("JavaEdition", "assets/empty.png");
+        MINECRAFT_TITLE_TEXTURE = new Identifier("Minecraft", empty_image);
+        EDITION_TITLE_TEXTURE = new Identifier("JavaEdition", empty_image);
         */
 
         splashText = null;
@@ -73,9 +75,7 @@ public abstract class TitleScreenMixin extends Screen {
 
 
         this.addButton(new ButtonWidget(this.width - (this.width - 10), this.height - (this.height - 140), 120, 20, new LiteralText("DiamondFire"), (buttonWidget) -> {
-            MinecraftClient mc = MinecraftClient.getInstance();
-            ServerInfo serverInfo = new ServerInfo("DF", "mcdiamondfire.com:25565", false);
-            mc.openScreen(new ConnectScreen(mc.currentScreen, mc, serverInfo));
+
         }));
 
         this.addButton(new ButtonWidget(this.width - (this.width - 10), this.height - (this.height - 170), 120, 20, new LiteralText("Quit Game"), (buttonWidget) -> {
@@ -83,15 +83,13 @@ public abstract class TitleScreenMixin extends Screen {
             System.exit(1);
         }));
 
-        /*
-        this.addButton(new BlendableTexturedButtonWidget(10, 10, 20, 20, 0, 0, 20, identifier_main, 20, 40,
+        this.addButton(new BlendableTexturedButtonWidget(this.width - (this.width - 10), this.height - (this.height - 50), 20, 20, 0, 0, 20, df_button, 20, 40,
                 (button) -> {
                     MinecraftClient mc = MinecraftClient.getInstance();
                     ServerInfo serverInfo = new ServerInfo("DF", "mcdiamondfire.com:25565", false);
                     mc.openScreen(new ConnectScreen(mc.currentScreen, mc, serverInfo));
                 }));
-
-         */
     }
+
 }
 

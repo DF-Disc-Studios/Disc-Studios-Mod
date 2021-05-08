@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.techstreet.cbp_mod.mixin",
+  "package": "io.github.discstudiosclient.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],

@@ -1,4 +1,4 @@
-package net.techstreet.cbp_mod.mixin.render;
+package io.github.discstudiosclient.util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
