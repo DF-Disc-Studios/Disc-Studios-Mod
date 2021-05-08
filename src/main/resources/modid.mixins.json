@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "screen.TitleScreenMixin"
+    "screen.TitleScreenMixin",
+    "message.MessageListenerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

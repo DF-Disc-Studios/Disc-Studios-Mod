@@ -4,7 +4,6 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
-import io.github.discstudiosclient.config.ConfigHandler;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +20,6 @@ public class Main implements ModInitializer {
     @Override
     public void onInitialize() {
         log(Level.INFO, "Initializing");
-        AutoConfig.register(ConfigHandler.class, Toml4jConfigSerializer::new);
     }
 
     public static void log(Level level, String message) {

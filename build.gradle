@@ -28,9 +28,9 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Config
-	modImplementation "me.shedaniel.cloth:cloth-config-fabric:4.11.19"
-	include "io.github.cottonmc:cotton-client-commands:1.0.1+1.16-rc1"
-	include "me.shedaniel.cloth:cloth-config-fabric:4.11.19"
+	//modImplementation "me.shedaniel.cloth:cloth-config-fabric:4.11.19"
+	//include "io.github.cottonmc:cotton-client-commands:1.0.1+1.16-rc1"
+	//include "me.shedaniel.cloth:cloth-config-fabric:4.11.19"
 
 	//GUI
 	//include "io.github.cottonmc:LibGui:3.2.2+1.16.3"
