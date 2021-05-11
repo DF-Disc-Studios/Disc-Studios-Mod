@@ -7,7 +7,9 @@
   ],
   "client": [
     "screen.TitleScreenMixin",
-    "message.MessageListenerMixin"
+    "message.MessageListenerMixin",
+    "message.MessageSenderMixin",
+    "render.InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
