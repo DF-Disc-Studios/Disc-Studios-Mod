@@ -29,6 +29,8 @@ public class ChatRecievedEvent {
     public static String locateParser_node = "none";
     public static String locateParser_command = "none";
 
+    public static boolean on_df = false;
+
     public static void onMessage(Text message, CallbackInfo ci) {
         MinecraftClient mc = MinecraftClient.getInstance();
         String text = message.getString();
@@ -53,16 +55,14 @@ public class ChatRecievedEvent {
             cancel = true;
         }
 
-        /*
         if (text.equals("◆ Welcome back to DiamondFire! ◆")) {
+            on_df = true;
             if (!keyCollected) {
                 mc.player.sendChatMessage("/server " + returnNode);
                 mc.player.sendChatMessage("/join 52174");
                 gettingKey = true;
             }
         }
-
-         */
 
         if (locateParser) {
             if (text.equals("Error: Could not find that player.")) {

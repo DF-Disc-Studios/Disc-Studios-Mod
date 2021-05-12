@@ -45,59 +45,63 @@ public class Main implements ModInitializer {
         log(Level.INFO, "Initializing v" + MOD_VERSION);
 
         ClientTickEvents.END_CLIENT_TICK.register((listener) -> {
+            if (MinecraftClient.getInstance().getCurrentServerEntry() != null) {
+                if (!MinecraftClient.getInstance().getCurrentServerEntry().address.contains("mcdiamondfire.com")) {
+                    ChatRecievedEvent.on_df = false;
+                }
+            }
+
             tickCounter += 1;
 
             if (tickCounter == 20) {
                 new Thread(() -> {
                     tickCounter = 0;
-                    if (MinecraftClient.getInstance().getCurrentServerEntry() != null) {
-                        if (MinecraftClient.getInstance().getCurrentServerEntry().address.contains("mcdiamondfire.com")) {
-                            Main.MC.player.sendChatMessage("/locate");
-                            ChatRecievedEvent.locateParser = true;
-                            Integer index = 0;
+                    if (ChatRecievedEvent.on_df) {
+                        Main.MC.player.sendChatMessage("/locate");
+                        ChatRecievedEvent.locateParser = true;
+                        Integer index = 0;
 
-                            while (index != 5000) {
-                                index += 1;
-                                if (index == 2000) {
-                                    ChatRecievedEvent.locateParser = false;
-                                    break;
-                                }
+                        while (index != 5000) {
+                            index += 1;
+                            if (index == 2000) {
+                                ChatRecievedEvent.locateParser = false;
+                                break;
+                            }
 
-                                if (!ChatRecievedEvent.locateParser) {
-
-                                    try {
-                                        String sURL = "https://raw.githubusercontent.com/DF-Disc-Studios/Data/main/plots.json";
-                                        URL url = new URL(sURL);
-                                        URLConnection request = url.openConnection();
-                                        request.connect();
-
-                                        JsonParser jp = new JsonParser();
-                                        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-                                        JsonObject rootobj = root.getAsJsonObject();
-
-                                        String plot = rootobj.get(ChatRecievedEvent.locateParser_id).getAsString();
-
-                                        TEXT = "§8[§b\uD83E\uDE93§8] §7Disc Studios Client\n" + "§8[§b\uD83E\uDE93§8] §7" + plot;
-
-                                        DISPLAY_TEXT = true;
-
-                                    } catch (Exception e) {
-                                        TEXT = "§8[§b\uD83E\uDE93§8] §7Disc Studios Client";
-                                        DISPLAY_TEXT = true;
-                                    }
-
-                                    break;
-                                }
+                            if (!ChatRecievedEvent.locateParser) {
 
                                 try {
-                                    Thread.sleep(1);
+                                    String sURL = "https://raw.githubusercontent.com/DF-Disc-Studios/Data/main/plots.json";
+                                    URL url = new URL(sURL);
+                                    URLConnection request = url.openConnection();
+                                    request.connect();
 
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
+                                    JsonParser jp = new JsonParser();
+                                    JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+                                    JsonObject rootobj = root.getAsJsonObject();
 
+                                    String plot = rootobj.get(ChatRecievedEvent.locateParser_id).getAsString();
+
+                                    TEXT = "§8[§b\uD83E\uDE93§8] §7Disc Studios Client\n" + "§8[§b\uD83E\uDE93§8] §7" + plot;
+
+                                    DISPLAY_TEXT = true;
+
+                                } catch (Exception e) {
+                                    TEXT = "§8[§b\uD83E\uDE93§8] §7Disc Studios Client";
+                                    DISPLAY_TEXT = true;
                                 }
+
+                                break;
                             }
-                        } else {DISPLAY_TEXT = false;}
+
+                            try {
+                                Thread.sleep(1);
+
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+
+                            }
+                        }
                     } else {DISPLAY_TEXT = false;}
                 }).start();
             }
