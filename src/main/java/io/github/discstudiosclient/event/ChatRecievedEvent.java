@@ -53,6 +53,7 @@ public class ChatRecievedEvent {
             cancel = true;
         }
 
+        /*
         if (text.equals("◆ Welcome back to DiamondFire! ◆")) {
             if (!keyCollected) {
                 mc.player.sendChatMessage("/server " + returnNode);
@@ -60,6 +61,8 @@ public class ChatRecievedEvent {
                 gettingKey = true;
             }
         }
+
+         */
 
         if (locateParser) {
             if (text.equals("Error: Could not find that player.")) {
