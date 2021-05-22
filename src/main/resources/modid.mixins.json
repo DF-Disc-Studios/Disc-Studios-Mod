@@ -6,7 +6,6 @@
   "mixins": [
   ],
   "client": [
-    "screen.TitleScreenMixin",
     "message.MessageListenerMixin",
     "message.MessageSenderMixin",
     "render.InGameHudMixin"
