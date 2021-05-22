@@ -17,10 +17,6 @@ import java.util.regex.Pattern;
 public class ChatRecievedEvent {
 
     public static int cancelMsgs = 0;
-    public static boolean gettingKey = true;
-    public static boolean keyCollected = false;
-    public static String returnNode = "node5";
-    public static String key = "none";
     public static String currentPatch = "none";
 
     public static boolean locateParser = false;
@@ -28,8 +24,6 @@ public class ChatRecievedEvent {
     public static String locateParser_name = "none";
     public static String locateParser_node = "none";
     public static String locateParser_command = "none";
-
-    public static boolean on_df = false;
 
     public static void onMessage(Text message, CallbackInfo ci) {
         MinecraftClient mc = MinecraftClient.getInstance();
@@ -49,19 +43,8 @@ public class ChatRecievedEvent {
         if (text.startsWith("Current patch: ")) {
             currentPatch = text.replace("Current patch: ", "");
             currentPatch = currentPatch.replace(" See the patch notes with /patch!", "");
-        }
-
-        if (gettingKey) {
-            cancel = true;
-        }
-
-        if (text.equals("◆ Welcome back to DiamondFire! ◆")) {
-            on_df = true;
-            if (!keyCollected) {
-                mc.player.sendChatMessage("/server " + returnNode);
-                mc.player.sendChatMessage("/join 52174");
-                gettingKey = true;
-            }
+            ChatUtil.sendMessage("Thanks for using " + Main.MOD_NAME + " v" + Main.MOD_VERSION, ChatType.SUCCESS);
+            ChatUtil.sendMessage("Use ?help for a list of commands!", ChatType.SUCCESS);
         }
 
         if (locateParser) {
@@ -137,50 +120,6 @@ public class ChatRecievedEvent {
                 locateParser = false;
 
             }
-        }
-
-        if (text.startsWith("Error: You are not whitelisted on this plot!")) {
-            if (gettingKey) {
-                gettingKey = false;
-                keyCollected = true;
-                key = "None";
-
-                ChatUtil.sendMessage("§4◆ §bWelcome back to DiamondFire! §4◆");
-                ChatUtil.sendMessage("§eCurrent patch: §a" + currentPatch + "§e See the patch notes with /patch!");
-
-                ChatUtil.sendMessage(" ");
-                ChatUtil.sendMessage("Thanks for using Disc Studios Client!", ChatType.SUCCESS);
-                ChatUtil.sendMessage("Use ?help for a list of commands!", ChatType.SUCCESS);
-            }
-        }
-
-        if (text.startsWith("DS_Client_Key: ")) {
-            key = text.replace("DS_Client_Key: ", "");
-            gettingKey = false;
-
-            if (!keyCollected) {
-                keyCollected = true;
-                Main.log(Level.INFO, "Chat key has been sucsessfully set to: " + key);
-                mc.player.sendChatMessage("/spawn");
-                ChatUtil.sendMessage("§4◆ §bWelcome back to DiamondFire! §4◆");
-                ChatUtil.sendMessage("§eCurrent patch: §a" + currentPatch + "§e See the patch notes with /patch!");
-
-                ChatUtil.sendMessage(" ");
-                ChatUtil.sendMessage("Thanks for using Disc Studios Client!", ChatType.SUCCESS);
-                ChatUtil.sendMessage("Use ?help for a list of commands!", ChatType.SUCCESS);
-
-                Main.MC.player.playSound(SoundEvents.UI_LOOM_TAKE_RESULT, SoundCategory.MASTER, 50, 2);
-
-            } else {
-                Main.log(Level.INFO, "Chat key has been sucsessfully updated to: " + key);
-
-            }
-
-            cancel = true;
-        }
-
-        if (cancel) {
-            ci.cancel();
         }
     }
 }
