@@ -17,10 +17,6 @@
   "environment": "client",
 
   "entrypoints": {
-    "cotton-client-commands": [
-      "io.github.codeutilities.commands.CommandHandler"
-    ],
-
     "server": [
     ],
 
