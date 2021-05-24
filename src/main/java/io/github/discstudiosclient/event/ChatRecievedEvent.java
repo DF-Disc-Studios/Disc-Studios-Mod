@@ -121,5 +121,9 @@ public class ChatRecievedEvent {
 
             }
         }
+
+        if (cancel) {
+            ci.cancel();
+        }
     }
 }
