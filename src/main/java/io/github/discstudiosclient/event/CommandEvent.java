@@ -21,13 +21,9 @@ public class CommandEvent {
     public static void onCommand(String string, CallbackInfo ci, String[] args) {
         new Thread(() -> {
             if (string.startsWith("?help")) {
-                ChatUtil.sendMessage(
-                        "§7§m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m \n" +
-                                "§fDisc Studios Client help menu!\n\n" +
-                                "§b→ §6?chat <message> §8- §fSend a message into Staff Chat.\n" +
-                                "§b→ §6?profile <player> §8- §fSend a message into Dev Chat.\n" +
-                                "§7§m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m "
-                );
+                ChatUtil.sendMessage("§7§m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m ", ChatType.SUCCESS);
+                ChatUtil.sendMessage("§b→ §6?chat <message> §8- §fView the profile of a user.", ChatType.SUCCESS);
+                ChatUtil.sendMessage("§7§m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m ", ChatType.SUCCESS);
 
             } else if (string.startsWith("?profile")) {
                 if (args.length >= 2) {
