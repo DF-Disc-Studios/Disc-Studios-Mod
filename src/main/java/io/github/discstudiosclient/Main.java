@@ -47,35 +47,37 @@ public class Main implements ModInitializer {
 
             if (tickCounter == 20) {
                 new Thread(() -> {
-                    Main.MC.player.sendChatMessage("/locate");
-                    ChatRecievedEvent.locateParser = true;
+                    if (Main.MC.player != null) {
+                        Main.MC.player.sendChatMessage("/locate");
+                        ChatRecievedEvent.locateParser = true;
 
-                    Integer index = 0;
-                    Boolean sucsess = false;
-                    while (index != 5000) {
-                        index += 1;
-                        if (index == 2000) {
-                            ChatRecievedEvent.locateParser = false;
-                            sucsess = false;
-                            break;
+                        Integer index = 0;
+                        Boolean sucsess = false;
+                        while (index != 5000) {
+                            index += 1;
+                            if (index == 2000) {
+                                ChatRecievedEvent.locateParser = false;
+                                sucsess = false;
+                                break;
+                            }
+
+                            if (ChatRecievedEvent.locateParser == false) {
+                                sucsess = true;
+                                break;
+                            }
+
+                            try {
+                                Thread.sleep(1);
+
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+
+                            }
                         }
 
-                        if (ChatRecievedEvent.locateParser == false) {
-                            sucsess = true;
-                            break;
-                        }
-
-                        try {
-                            Thread.sleep(1);
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        if (sucsess) {
 
                         }
-                    }
-
-                    if (sucsess) {
-
                     }
 
                 }).start();
