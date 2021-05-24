@@ -3,8 +3,8 @@
   "id": "discstudiosclient",
   "version": "${version}",
 
-  "name": "DiscStudios_Client",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Disc Studios Client",
+  "description": "A client to improve time spent on Disc Studios Plots.",
   "authors": [
   ],
   "contact": {
