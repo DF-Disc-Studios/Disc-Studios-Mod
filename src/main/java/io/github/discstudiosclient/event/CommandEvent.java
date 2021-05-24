@@ -26,7 +26,7 @@ public class CommandEvent {
                 ChatUtil.sendMessage(" ", ChatType.SUCCESS);
                 ChatUtil.sendMessage("§b→ §6?profile <user> §8- §fView the profile of a user.", ChatType.SUCCESS);
                 ChatUtil.sendMessage("§7§m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m ", ChatType.SUCCESS);
-
+                
             } else if (string.startsWith("?profile")) {
                 if (args.length >= 2) {
                     try {
@@ -136,28 +136,34 @@ public class CommandEvent {
                         }
 
                         // Badges
-                        String image;
-                        String tooltip;
-                        Text finalBadges = new LiteralText("  §b→ §7Badges: ");
+                        try {
+                            String image;
+                            String tooltip;
+                            Text finalBadges = new LiteralText("  §b→ §7Badges: ");
 
-                        String[] userBadges = rootobj.get("badges").getAsString().split(" ");
+                            String[] userBadges = rootobj.get("badges").getAsString().split(" ");
 
-                        for (String badge : userBadges) {
-                            image = badges.get(badge + ".image").getAsString();
-                            tooltip = badges.get(badge + ".tooltip").getAsString();
+                            for (String badge : userBadges) {
+                                image = badges.get(badge + ".image").getAsString();
+                                tooltip = badges.get(badge + ".tooltip").getAsString();
 
-                            String finalTooltip = tooltip;
+                                String finalTooltip = tooltip;
 
-                            Text badgeFinal = new LiteralText(image + " ")
-                                    .styled(s -> s.withHoverEvent(
-                                            new HoverEvent(HoverEvent.Action.SHOW_TEXT, new LiteralText(finalTooltip))
-                                    ));
+                                Text badgeFinal = new LiteralText(image + " ")
+                                        .styled(s -> s.withHoverEvent(
+                                                new HoverEvent(HoverEvent.Action.SHOW_TEXT, new LiteralText(finalTooltip))
+                                        ));
 
-                            finalBadges = finalBadges.shallowCopy().append(badgeFinal);
+                                finalBadges = finalBadges.shallowCopy().append(badgeFinal);
+                            }
+
+
+                            ChatUtil.sendMessage((MutableText) finalBadges, ChatType.SUCCESS);
+
+                        } catch (Exception e) {
+                            ChatUtil.sendMessage("  §b→ §7Badges: ", ChatType.SUCCESS);
+
                         }
-
-
-                        ChatUtil.sendMessage((MutableText) finalBadges, ChatType.SUCCESS);
 
                         // Footer
                         ChatUtil.sendMessage("&7 &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m &m".replace("&", "§"), ChatType.SUCCESS);
