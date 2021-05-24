@@ -22,7 +22,9 @@ public class CommandEvent {
         new Thread(() -> {
             if (string.startsWith("?help")) {
                 ChatUtil.sendMessage("§7§m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m ", ChatType.SUCCESS);
-                ChatUtil.sendMessage("§b→ §6?chat <message> §8- §fView the profile of a user.", ChatType.SUCCESS);
+                ChatUtil.sendMessage("  §7Disc Studios Client Help ", ChatType.SUCCESS);
+                ChatUtil.sendMessage(" ", ChatType.SUCCESS);
+                ChatUtil.sendMessage("§b→ §6?profile <user> §8- §fView the profile of a user.", ChatType.SUCCESS);
                 ChatUtil.sendMessage("§7§m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m ", ChatType.SUCCESS);
 
             } else if (string.startsWith("?profile")) {
