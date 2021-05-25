@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Main implements ModInitializer {
     public static final String MOD_ID = "discstudiosclient";
-    public static final String MOD_NAME = "Disc Studios Client";
+    public static final String MOD_NAME = "Disc Studios Mod";
     public static final String MOD_VERSION = "1.0.0";
 
     public static final MinecraftClient MC = MinecraftClient.getInstance();
