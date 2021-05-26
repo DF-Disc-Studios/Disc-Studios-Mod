@@ -3,6 +3,7 @@ package io.github.discstudiosclient.event;
 import io.github.discstudiosclient.Main;
 import io.github.discstudiosclient.util.ChatType;
 import io.github.discstudiosclient.util.ChatUtil;
+import io.github.discstudiosclient.util.Info;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -30,6 +31,7 @@ public class ChatRecievedEvent {
         String text = message.getString();
 
         boolean cancel = false;
+        boolean display = false;
 
         if (mc.player == null) {
             return;
@@ -59,6 +61,26 @@ public class ChatRecievedEvent {
 
             String msg = text.replaceAll("§.", "");
             if (msg.startsWith("                                       \n")) {
+                if (msg.contains("\nYou are currently")) {
+                    Info.CURRENT_MODE = Info.modes.UNKNOWN;
+                }
+
+                if (msg.contains("\nYou are currently at spawn\n")) {
+                    Info.CURRENT_MODE = Info.modes.SPAWN;
+                }
+
+                if (msg.contains("\nYou are currently coding on:\n")) {
+                    Info.CURRENT_MODE = Info.modes.DEV;
+                }
+
+                if (msg.contains("\nYou are currently building on:\n")) {
+                    Info.CURRENT_MODE = Info.modes.BUILD;
+                }
+
+                if (msg.contains("\nYou are currently playing on:\n")) {
+                    Info.CURRENT_MODE = Info.modes.PLAY;
+                }
+
                 if (msg.contains(" is currently at spawn\n")) {
                     locateParser_name = "Spawn";
                     locateParser_id = "none";
@@ -122,7 +144,26 @@ public class ChatRecievedEvent {
             }
         }
 
+        if (text.equals("» You are now in build mode.")) {
+            Info.CURRENT_MODE = Info.modes.BUILD;
+
+        }
+
+        if (text.equals("» You are now in dev mode.")) {
+            Info.CURRENT_MODE = Info.modes.DEV;
+
+        }
+
+        if (text.matches("^Joined game: .* by .*$")) {
+            Info.CURRENT_MODE = Info.modes.PLAY;
+
+        }
+
+
         if (cancel) {
+            if (display) {
+                Main.log(Level.INFO, "[CANCELED] " + text);
+            }
             ci.cancel();
         }
     }

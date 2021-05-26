@@ -1,7 +1,13 @@
 package io.github.discstudiosclient;
 
+import io.github.discstudiosclient.event.ChatRecievedEvent;
+import io.github.discstudiosclient.util.ChatType;
+import io.github.discstudiosclient.util.ChatUtil;
+import io.github.discstudiosclient.util.Info;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.LiteralText;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,8 +19,8 @@ public class Main implements ModInitializer {
 
     public static final MinecraftClient MC = MinecraftClient.getInstance();
     public static final Logger LOGGER = LogManager.getLogger();
-    public byte tickCounter;
 
+    public static Integer tickCounter = 0;
     public static boolean DISPLAY_TEXT = false;
     public static String TEXT = "none";
 
@@ -22,6 +28,42 @@ public class Main implements ModInitializer {
     public void onInitialize() {
         log(Level.INFO, "Initializing v" + MOD_VERSION);
 
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            tickCounter += 1;
+
+            if (tickCounter == 24) {
+                tickCounter = 0;
+                if (MC.getCurrentServerEntry() != null) {
+                    new Thread(() -> {
+                        try {
+                            MC.player.sendChatMessage("/locate");
+
+                            ChatRecievedEvent.locateParser = true;
+
+                            Integer index = 0;
+                            while (index != 5000) {
+                                index += 1;
+                                if (index == 1000) {
+                                    ChatRecievedEvent.locateParser = false;
+                                    break;
+                                }
+
+                                if (!ChatRecievedEvent.locateParser) {
+                                    break;
+                                }
+
+                                Thread.sleep(1);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+
+                        }
+                    }).start();
+
+                }
+
+            }
+        });
     }
 
     public static void log(Level level, String message) {

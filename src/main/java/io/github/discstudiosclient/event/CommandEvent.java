@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 import io.github.discstudiosclient.Main;
 import io.github.discstudiosclient.util.ChatType;
 import io.github.discstudiosclient.util.ChatUtil;
+import io.github.discstudiosclient.util.Info;
 import io.github.discstudiosclient.util.TextUtil;
 import net.minecraft.text.*;
 import org.apache.logging.log4j.Level;
@@ -27,6 +28,9 @@ public class CommandEvent {
                 ChatUtil.sendMessage("§b→ §6?profile <user> §8- §fView the profile of a user.", ChatType.SUCCESS);
                 ChatUtil.sendMessage("§7§m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m ", ChatType.SUCCESS);
                 
+            } else if (string.startsWith("?debug")) {
+                ChatUtil.sendMessage(Info.CURRENT_MODE.getIdentifier());
+
             } else if (string.startsWith("?profile")) {
                 if (args.length >= 2) {
                     try {
