@@ -3,7 +3,7 @@
   "id": "discstudiosclient",
   "version": "${version}",
 
-  "name": "Disc Studios Mod",
+  "name": "DiscStudios_Mod",
   "description": "A client to improve time spent on Disc Studios Plots.",
   "authors": [
   ],
