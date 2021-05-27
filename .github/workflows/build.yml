@@ -15,5 +15,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: DiscStudios_Client
-        path: ./build/libs/DiscStudios_Client-[0-9].[0-9].[0-9].jar
+        name: DiscStudios_Mod
+        path: ./build/libs/DiscStudios_Mod-[0-9].[0-9].[0-9].jar
