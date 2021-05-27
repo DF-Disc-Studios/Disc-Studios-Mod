@@ -34,33 +34,35 @@ public class Main implements ModInitializer {
             if (tickCounter == 40) {
                 tickCounter = 0;
                 if (MC.getCurrentServerEntry() != null) {
-                    if (!MC.player.isDead()) {
-                        if (MC.getCurrentServerEntry().address.contains("mcdiamondfire.com")) {
-                            new Thread(() -> {
-                                try {
-                                    MC.player.sendChatMessage("/locate");
+                    if (MC.player != null) {
+                        if (!MC.player.isDead()) {
+                            if (MC.getCurrentServerEntry().address.contains("mcdiamondfire.com")) {
+                                new Thread(() -> {
+                                    try {
+                                        MC.player.sendChatMessage("/locate");
 
-                                    ChatRecievedEvent.locateParser = true;
+                                        ChatRecievedEvent.locateParser = true;
 
-                                    Integer index = 0;
-                                    while (index != 5000) {
-                                        index += 1;
-                                        if (index == 1500) {
-                                            ChatRecievedEvent.locateParser = false;
-                                            break;
+                                        Integer index = 0;
+                                        while (index != 5000) {
+                                            index += 1;
+                                            if (index == 1500) {
+                                                ChatRecievedEvent.locateParser = false;
+                                                break;
+                                            }
+
+                                            if (!ChatRecievedEvent.locateParser) {
+                                                break;
+                                            }
+
+                                            Thread.sleep(1);
                                         }
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
 
-                                        if (!ChatRecievedEvent.locateParser) {
-                                            break;
-                                        }
-
-                                        Thread.sleep(1);
                                     }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-
-                                }
-                            }).start();
+                                }).start();
+                            }
                         }
                     }
                 }
