@@ -31,7 +31,7 @@ public class Main implements ModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             tickCounter += 1;
 
-            if (tickCounter == 40) {
+            if (tickCounter == 80) {
                 tickCounter = 0;
                 if (MC.getCurrentServerEntry() != null) {
                     if (MC.player != null) {
@@ -47,7 +47,7 @@ public class Main implements ModInitializer {
                                             Integer index = 0;
                                             while (index != 5000) {
                                                 index += 1;
-                                                if (index == 1500) {
+                                                if (index == 5000) {
                                                     ChatRecievedEvent.locateParser = false;
                                                     break;
                                                 }
