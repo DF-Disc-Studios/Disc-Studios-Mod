@@ -2,13 +2,14 @@
   "required": true,
   "minVersion": "0.8",
   "package": "io.github.discstudiosclient.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
   ],
   "client": [
     "message.MessageListenerMixin",
     "message.MessageSenderMixin",
-    "render.InGameHudMixin"
+    "render.InGameHudMixin",
+    "misc.InventoryOpenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

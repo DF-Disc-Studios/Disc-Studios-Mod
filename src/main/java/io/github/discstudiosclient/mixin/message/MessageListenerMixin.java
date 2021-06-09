@@ -1,20 +1,14 @@
 package io.github.discstudiosclient.mixin.message;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import io.github.discstudiosclient.Main;
 import io.github.discstudiosclient.event.ChatRecievedEvent;
 import io.github.discstudiosclient.util.MessageGrabber;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.network.MessageType;
 import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
-import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.io.IOException;
 
 @Mixin(ClientPlayNetworkHandler.class)
 public class MessageListenerMixin {

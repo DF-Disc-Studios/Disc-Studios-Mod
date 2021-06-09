@@ -7,10 +7,13 @@ import io.github.discstudiosclient.util.Info;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
 
 public class Main implements ModInitializer {
     public static final String MOD_ID = "discstudiosclient";
@@ -23,6 +26,8 @@ public class Main implements ModInitializer {
     public static Integer tickCounter = 0;
     public static boolean DISPLAY_TEXT = false;
     public static String TEXT = "none";
+
+    public static ArrayList<ItemStack> ITEMS = new ArrayList<ItemStack>();
 
     @Override
     public void onInitialize() {

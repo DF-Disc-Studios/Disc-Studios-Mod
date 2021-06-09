@@ -23,7 +23,6 @@ public class BlendableTexturedButtonWidget extends TexturedButtonWidget {
 
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         super.renderButton(matrices, mouseX, mouseY, delta);
