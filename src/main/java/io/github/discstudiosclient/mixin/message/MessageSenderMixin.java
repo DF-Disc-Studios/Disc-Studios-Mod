@@ -1,20 +1,16 @@
 package io.github.discstudiosclient.mixin.message;
 
 import io.github.discstudiosclient.Main;
-import io.github.discstudiosclient.event.ChatRecievedEvent;
 import io.github.discstudiosclient.event.CommandEvent;
 import io.github.discstudiosclient.util.ChatType;
 import io.github.discstudiosclient.util.ChatUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.*;
-import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.io.Console;
 
 @Mixin(ClientPlayerEntity.class)
 public class MessageSenderMixin {

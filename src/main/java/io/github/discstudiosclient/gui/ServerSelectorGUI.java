@@ -15,9 +15,9 @@ public class ServerSelectorGUI extends LightweightGuiDescription {
 
         WGridPanel root = new WGridPanel();
         setRootPanel(root);
-        root.setSize(0, 0);
+        root.setSize(11, 3);
 
-        int x = 0;
+        int x = 1;
 
         stack = stack.subList(0, 9);
         ArrayList<ItemStack> newStack = new ArrayList<ItemStack>();
@@ -48,6 +48,9 @@ public class ServerSelectorGUI extends LightweightGuiDescription {
             }
             x += 1;
         }
-    }
 
+        ItemStack itemAdd = new ItemStack(Item.byRawId(0));
+        WItem i = new WItem(itemAdd);
+        root.add(i, 10, 2);
+    }
 }
