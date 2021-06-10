@@ -26,12 +26,18 @@ public class InventoryOpenEvent {
                 ItemStack item = new ItemStack(Items.STONE);
                 List<ItemStack> stack = packet.getContents();
 
-                //stack.set(5, item);
+                /*
+                stack.set(5, item);
+
+
+
+
                 try {
                     MinecraftClient.getInstance().openScreen(new CottonClientScreen(new ServerSelectorGUI(stack)));
                 } catch (Exception e) {
                     ChatUtil.sendMessage(e.toString(), ChatType.FAIL);
                 }
+                                 */
             }
         }
     }
