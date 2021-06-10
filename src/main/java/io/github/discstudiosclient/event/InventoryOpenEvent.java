@@ -3,6 +3,8 @@ package io.github.discstudiosclient.event;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import io.github.discstudiosclient.Main;
 import io.github.discstudiosclient.gui.ServerSelectorGUI;
+import io.github.discstudiosclient.util.ChatType;
+import io.github.discstudiosclient.util.ChatUtil;
 import io.github.discstudiosclient.util.Info;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
@@ -25,7 +27,11 @@ public class InventoryOpenEvent {
                 List<ItemStack> stack = packet.getContents();
 
                 //stack.set(5, item);
-                MinecraftClient.getInstance().openScreen(new CottonClientScreen(new ServerSelectorGUI(stack)));
+                try {
+                    MinecraftClient.getInstance().openScreen(new CottonClientScreen(new ServerSelectorGUI(stack)));
+                } catch (Exception e) {
+                    ChatUtil.sendMessage(e.toString(), ChatType.FAIL);
+                }
             }
         }
     }
