@@ -10,6 +10,7 @@
     "message.MessageSenderMixin",
     "render.InGameHudMixin",
     "misc.InventoryOpenMixin"
+
   ],
   "injectors": {
     "defaultRequire": 1

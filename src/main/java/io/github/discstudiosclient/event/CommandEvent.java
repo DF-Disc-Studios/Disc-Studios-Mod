@@ -3,11 +3,16 @@ package io.github.discstudiosclient.event;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import io.github.discstudiosclient.Main;
+import io.github.discstudiosclient.gui.ServerSelectorGUI;
 import io.github.discstudiosclient.util.ChatType;
 import io.github.discstudiosclient.util.ChatUtil;
 import io.github.discstudiosclient.util.Info;
 import io.github.discstudiosclient.util.TextUtil;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.*;
 import org.apache.logging.log4j.Level;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -16,6 +21,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 public class CommandEvent {
 
@@ -29,7 +35,8 @@ public class CommandEvent {
                 ChatUtil.sendMessage("§7§m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m §m ", ChatType.SUCCESS);
                 
             } else if (string.startsWith("?debug")) {
-                ChatUtil.sendMessage(Info.CURRENT_MODE.getIdentifier());
+                ChatUtil.sendMessage("Current Mode: " + Info.CURRENT_MODE.getIdentifier());
+                ChatUtil.sendMessage("Held Item: " + Main.MC.player.getInventory().getMainHandStack().getName());
 
             } else if (string.startsWith("?profile")) {
                 if (args.length >= 2) {

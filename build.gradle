@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '0.8-SNAPSHOT'
 	id 'maven-publish'
+	id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_16
@@ -30,7 +31,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	modImplementation "io.github.cottonmc:LibGui:4.0.0+1.17";
 
-
+	//websocket client
+	shadow "org.java-websocket:Java-WebSocket:1.5.1"
 }
 
 processResources {

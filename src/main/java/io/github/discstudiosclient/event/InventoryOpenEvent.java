@@ -1,12 +1,7 @@
 package io.github.discstudiosclient.event;
 
-import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import io.github.discstudiosclient.Main;
-import io.github.discstudiosclient.gui.ServerSelectorGUI;
-import io.github.discstudiosclient.util.ChatType;
-import io.github.discstudiosclient.util.ChatUtil;
 import io.github.discstudiosclient.util.Info;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.s2c.play.InventoryS2CPacket;
@@ -26,18 +21,8 @@ public class InventoryOpenEvent {
                 ItemStack item = new ItemStack(Items.STONE);
                 List<ItemStack> stack = packet.getContents();
 
-                /*
                 stack.set(5, item);
-
-
-
-
-                try {
-                    MinecraftClient.getInstance().openScreen(new CottonClientScreen(new ServerSelectorGUI(stack)));
-                } catch (Exception e) {
-                    ChatUtil.sendMessage(e.toString(), ChatType.FAIL);
-                }
-                                 */
+                //MinecraftClient.getInstance().openScreen(new CottonClientScreen(new ServerSelectorGUI(stack)));
             }
         }
     }
